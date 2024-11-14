@@ -44,6 +44,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem 'mysql2', '>= 0.5.0'
+
 end
 
 

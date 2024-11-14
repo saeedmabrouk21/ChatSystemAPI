@@ -1,4 +1,5 @@
 development:
+  <<: *default
   adapter: mysql2
   encoding: utf8
   host: <%= ENV['DATABASE_HOST'] %>

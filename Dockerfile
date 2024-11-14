@@ -1,12 +1,14 @@
 FROM ruby:3.3.6-slim
 
 # Install dependencies for Rails and MySQL
-RUN apt-get update -qq && apt-get install -y \
-  build-essential \
-  libpq-dev \
-  nodejs \
-  curl \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    nodejs \
+    curl \
+    libmariadb-dev && \
+    rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /rails
 
