@@ -7,22 +7,27 @@ services:
       - "3000:3000"
     environment:
       RAILS_ENV: development
-      DATABASE_HOST: db
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: 1234
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
     volumes:
       - .:/rails
     depends_on:
       - db
       - elasticsearch
+    env_file:
+      - .env
 
   db:
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: chat_system_api_development
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
     ports:
       - "3306:3306"
+    env_file:
+      - .env
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
