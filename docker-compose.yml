@@ -16,6 +16,8 @@ services:
       - elasticsearch
     env_file:
       - .env
+    networks:
+      - backend
 
   db:
     image: mysql:8
@@ -26,6 +28,8 @@ services:
       - "3306:3306"
     env_file:
       - .env
+    networks:
+      - backend
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
@@ -33,3 +37,9 @@ services:
       discovery.type: single-node
     ports:
       - "9200:9200"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
