@@ -1,5 +1,5 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :update]
+  before_action :set_application, only: [ :show, :update ]
 
   # POST /applications
   def create
@@ -34,7 +34,7 @@ class ApplicationsController < ApplicationController
   # Set application for actions that need a specific application
   def set_application
     @application = Application.find_by(token: params[:token])
-    render json: { error: 'Application not found' }, status: :not_found unless @application
+    render json: { error: "Application not found" }, status: :not_found unless @application
   end
 
   # Strong parameters for application creation/updating
