@@ -39,6 +39,8 @@ gem "mysql2", ">= 0.5.0"
 gem "elasticsearch-rails", "~> 7.0"
 gem "elasticsearch-model", "~> 7.0"
 gem "active_model_serializers"
+gem "sidekiq"
+gem "sidekiq-scheduler"
 
 
 group :development, :test do
