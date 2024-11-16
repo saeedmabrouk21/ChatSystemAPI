@@ -43,7 +43,7 @@ class MessagesController < ApplicationController
       return
     end
 
-    results = Message.search(params[:query])
+    results = Message.search_in_chat(params[:query], @chat.id)
     render json: results
   end
 
