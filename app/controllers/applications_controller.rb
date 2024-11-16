@@ -31,7 +31,7 @@ class ApplicationsController < ApplicationController
     rescue ActiveRecord::StaleObjectError
       Rails.logger.info "Retrying update for application with token #{@application.token}, attempt ##{retries}"
       retries += 1
-      if retries <= MAX_RETRIES
+      if retries <= Rails.configuration.max_retries
         # Reload the application and retry the update
         @application.reload
         retry

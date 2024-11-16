@@ -29,10 +29,28 @@ class MessagesController < ApplicationController
 
   # PUT/PATCH /applications/:application_token/chats/:chat_number/messages/:number
   def update
-    if @message.update(message_params)
-      render json: @message
-    else
-      render json: @message.errors, status: :unprocessable_entity
+    retries = 0
+
+    begin
+      # Attempt to update the message
+      if @message.update(message_params)
+        render json: @message
+      else
+        render json: @message.errors, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::StaleObjectError
+      # If there's a version conflict, log and retry
+      Rails.logger.info "Retrying update for message in chat ##{@chat.number}, attempt ##{retries + 1}"
+
+      retries += 1
+      if retries <= Rails.configuration.max_retries
+        # Reload the message and retry the update
+        @message.reload
+        retry
+      else
+        # If maximum retries exceeded, respond with a conflict error
+        render json: { error: "Conflict detected. The message was updated by another process. Please try again." }, status: :conflict
+      end
     end
   end
 

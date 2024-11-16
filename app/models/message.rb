@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  self.locking_column = :lock_version
+
   include Searchable
 
   mapping do
