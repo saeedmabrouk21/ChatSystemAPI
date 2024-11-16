@@ -21,10 +21,24 @@ class ApplicationsController < ApplicationController
 
   # PATCH/PUT /applications/:token
   def update
-    if @application.update(application_params)
-      render json: @application
-    else
-      render json: @application.errors, status: :unprocessable_entity
+    retries = 0
+    begin
+      if @application.update(application_params)
+        render json: @application
+      else
+        render json: @application.errors, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::StaleObjectError
+      Rails.logger.info "Retrying update for application with token #{@application.token}, attempt ##{retries}"
+      retries += 1
+      if retries <= MAX_RETRIES
+        # Reload the application and retry the update
+        @application.reload
+        retry
+      else
+        # If maximum retries exceeded, respond with a conflict error
+        render json: { error: "Conflict detected. The application was updated by another process. Please try again." }, status: :conflict
+      end
     end
   end
 
