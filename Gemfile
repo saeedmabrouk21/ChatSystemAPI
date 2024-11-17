@@ -39,7 +39,7 @@ gem "mysql2", ">= 0.5.0"
 gem "elasticsearch-rails", "~> 7.0"
 gem "elasticsearch-model", "~> 7.0"
 gem "jsonapi-serializer"
-gem "redis"
+gem "redis", "3.3.5"
 gem "sidekiq"
 gem "sidekiq-scheduler"
 
