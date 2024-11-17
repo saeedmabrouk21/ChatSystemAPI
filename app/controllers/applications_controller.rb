@@ -8,7 +8,7 @@ class ApplicationsController < ApplicationController
     @application.token = SecureRandom.hex(10)
 
     if @application.save
-      render json: @application, status: :created
+      render json: { token: @application.token }, status: :created
     else
       render json: @application.errors, status: :unprocessable_entity
     end
@@ -16,7 +16,7 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/:token
   def show
-    render json: @application
+    render json: ApplicationSerializer.new(@application).serializable_hash[:data][:attributes]
   end
 
   # PATCH/PUT /applications/:token
@@ -24,7 +24,7 @@ class ApplicationsController < ApplicationController
     retries = 0
     begin
       if @application.update(application_params)
-        render json: @application
+        render json: ApplicationSerializer.new(@application).serializable_hash[:data][:attributes]
       else
         render json: @application.errors, status: :unprocessable_entity
       end

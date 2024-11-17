@@ -1,4 +1,5 @@
 # app/serializers/application_serializer.rb
-class ApplicationxxSerialfizer < ActiveModel::Serializer
-  attributes :id
+class ApplicationSerializer
+  include JSONAPI::Serializer
+  attributes :token, :chats_count
 end

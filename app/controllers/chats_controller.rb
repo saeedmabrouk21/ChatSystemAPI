@@ -4,13 +4,13 @@
 
     # GET /applications/:application_token/chats
     def index
-      @chats = @application.chats.order(:number)
-      render json: @chats
+      @chats = @application.chats.order(:number).to_a
+      render json: ChatSerializer.new(@chats).serializable_hash[:data].map { |chat| chat[:attributes] }
     end
 
     # GET /applications/:application_token/chats/:number
     def show
-      render json: @chat
+      render json: ChatSerializer.new(@chat).serializable_hash[:data][:attributes]
     end
 
     # POST /applications/:application_token/chats

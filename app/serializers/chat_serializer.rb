@@ -1,4 +1,6 @@
 # app/serializers/chat_serializer.rb
-class ChatxxSerializer < ActiveModel::Serializer
-  attributes :number
+class ChatSerializer
+  include JSONAPI::Serializer
+
+  attributes :number, :messages_count
 end

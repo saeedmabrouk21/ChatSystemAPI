@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
   # GET /applications/:application_token/chats/:chat_number/messages
   def index
     @messages = @chat.messages.order(:number)
-    render json: @messages
+    render json: MessageSerializer.new(@messages).serializable_hash[:data].map { |message| message[:attributes] }
   end
 
   # GET /applications/:application_token/chats/:chat_number/messages/:number
   def show
-    render json: @message
+    render json: MessageSerializer.new(@message).serializable_hash[:data][:attributes]
   end
 
   # POST /applications/:application_token/chats/:chat_number/messages
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
     begin
       # Attempt to update the message
       if @message.update(message_params)
-        render json: @message
+        render json: MessageSerializer.new(@message).serializable_hash[:data][:attributes]
       else
         render json: @message.errors, status: :unprocessable_entity
       end
@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
     end
 
     results = Message.search_in_chat(params[:query], @chat.id)
-    render json: results
+    render json: MessageSerializer.new(results).serializable_hash[:data].map { |result| result[:attributes] }
   end
 
   private
