@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
 
   # POST /applications/:application_token/chats/:chat_number/messages
   def create
-    message_number = @chat.messages.maximum(:number).to_i + 1
+    message_number = @chat.generate_message_number
 
     @message = @chat.messages.build(message_params.merge(number: message_number))
 
