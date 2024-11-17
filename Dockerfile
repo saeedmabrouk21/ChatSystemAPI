@@ -19,4 +19,5 @@ RUN bundle install
 # Copy the app code
 COPY . .
 
-CMD ["bash", "-c", "rails db:migrate && rails server -b 0.0.0.0 -p 3000"]
+#I using db reset since i'm not using volume for mysql container so I need seeding data every time
+CMD ["bash", "-c", "./wait-for-it.sh db:3306 -- bundle exec rails db:reset && bundle exec rails server -b 0.0.0.0 -p 3000"]

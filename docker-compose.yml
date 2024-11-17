@@ -50,7 +50,7 @@ services:
 
   sidekiq:
     build: .
-    command: bundle exec sidekiq
+    command: bash -c "./wait-for-it.sh db:3306 -- bundle exec sidekiq"
     environment:
       RAILS_ENV: development
       DATABASE_HOST: ${DATABASE_HOST}
