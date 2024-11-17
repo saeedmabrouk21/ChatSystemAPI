@@ -15,9 +15,9 @@
 
     # POST /applications/:application_token/chats
     def create
-      chat_number = @application.chats.maximum(:number).to_i + 1
+      @chat_number = @application.generate_chat_number
 
-      @chat = @application.chats.build(number: chat_number)
+      @chat = @application.chats.build(number: @chat_number)
 
       if @chat.save
         render json: { number: @chat.number }, status: :created
