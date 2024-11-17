@@ -43,8 +43,6 @@ services:
     environment:
       ELASTICSEARCH_URL: ${ELASTICSEARCH_URL}
       discovery.type: single-node
-    ports:
-      - "9200:9200"
     networks:
       - backend
 
