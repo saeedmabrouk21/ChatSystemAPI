@@ -1,0 +1,4 @@
+:scheduler:
+  :schedule:
+    RecalculateCountsJob:
+      every: '3m'   

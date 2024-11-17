@@ -6,9 +6,11 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_PORT: ${DATABASE_PORT}
+      REDIS_URL: ${REDIS_URL}
     volumes:
       - .:/rails
     depends_on:
@@ -29,6 +31,13 @@ services:
     networks:
       - backend
 
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
     environment:
@@ -36,6 +45,25 @@ services:
       discovery.type: single-node
     ports:
       - "9200:9200"
+    networks:
+      - backend
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+      REDIS_URL: ${REDIS_URL}
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
     networks:
       - backend
 

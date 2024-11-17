@@ -19,4 +19,4 @@ RUN bundle install
 # Copy the app code
 COPY . .
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bash", "-c", "rails db:migrate && rails server -b 0.0.0.0 -p 3000"]
