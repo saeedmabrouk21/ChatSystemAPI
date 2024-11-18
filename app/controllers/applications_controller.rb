@@ -4,8 +4,6 @@ class ApplicationsController < ApplicationController
   # POST /applications
   def create
     @application = Application.new(application_params)
-    # Generates a random token for the application
-    @application.token = SecureRandom.hex(10)
 
     if @application.save
       render json: { token: @application.token }, status: :created
