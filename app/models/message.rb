@@ -5,6 +5,7 @@ class Message < ApplicationRecord
 
   mapping do
     indexes :body, type: "text"
+    indexes :chatid, type: "keyword"
   end
 
   belongs_to :chat
