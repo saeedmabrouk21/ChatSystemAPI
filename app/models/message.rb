@@ -4,8 +4,8 @@ class Message < ApplicationRecord
   include Searchable
 
   mapping do
-    indexes :body, type: "text"
-    indexes :chatid, type: "keyword"
+    indexes :body, type: "text", "analyzer": "ngram_analyzer"
+    indexes :chat_id, type: "keyword"
   end
 
   belongs_to :chat
