@@ -110,3 +110,12 @@
 ## Database Schema and ERD diagram
 Database UML diagram : ([draw.io](https://app.diagrams.net/)) https://drive.google.com/file/d/1jtIFEO3A40BzT91NeBY5drYAQhqmfAva/view?usp=sharing
 ![image](https://github.com/user-attachments/assets/46c76133-e124-4c05-bc23-15ba44685161)
+
+---
+---
+## Running the application
+
+
+https://github.com/user-attachments/assets/a9d7aad1-71e2-4a9e-b41c-24d03abf60bf
+
+
