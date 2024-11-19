@@ -1,8 +1,8 @@
 # db/seeds.rb
 
 # Create applications
-app1 = Application.create(name: "Application 1", token: "token 1")
-app2 = Application.create(name: "Application 2", token: "token 2")
+app1 = Application.create(name: "Application 1", token: "3536cbfb09b20006a7a1")
+app2 = Application.create(name: "Application 2", token: "fffb7305909ef483f000")
 
 # Output any errors if applications are not created successfully
 puts app1.errors.full_messages unless app1.persisted?
