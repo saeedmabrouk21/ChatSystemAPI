@@ -6,6 +6,10 @@
 ```bash
   docker-compose up --build
 ```
+- After the containers are up and running, execute the following command to create the Elasticsearch index
+```bash
+  docker-compose run web rails elasticsearch:create_message_index
+```
 
 - I haven't defined volumes for the application so the creating data is not persistent.
 - I have put some dummy data in seed for testing purposes.
