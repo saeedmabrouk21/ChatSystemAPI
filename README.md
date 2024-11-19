@@ -120,6 +120,9 @@ Database UML diagram : ([draw.io](https://app.diagrams.net/)) https://drive.goog
 ## Running the application
 
 
-https://github.com/user-attachments/assets/a9d7aad1-71e2-4a9e-b41c-24d03abf60bf
+
+https://github.com/user-attachments/assets/b88e9e21-5a52-48c2-8ecd-29598eb2951d
+
+
 
 
