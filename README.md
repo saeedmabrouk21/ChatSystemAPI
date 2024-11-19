@@ -1,6 +1,14 @@
-# README
+# Documention
 
 ## Instructions to run your code
+- I've made the .env file accessible publicly to simplify running the application.
+- The application can be run by just running
+- ```bash
+docker-compose up --build
+```
+- I haven't defined volumes for the application so the creating data is not persistent.
+- I have put some dummy data in seed for testing purposes.
+  
 
 ## API Documentation
 
