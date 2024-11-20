@@ -118,6 +118,8 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    fakeredis (0.7.0)
+      redis (>= 3.2, < 5.0)
     faraday (2.12.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -356,6 +358,7 @@ DEPENDENCIES
   elasticsearch-rails (~> 7.0)
   factory_bot_rails
   faker
+  fakeredis (~> 0.7.0)
   jsonapi-serializer
   kamal
   mysql2 (>= 0.5.0)
