@@ -19,7 +19,7 @@ class Application < ApplicationRecord
   end
 
   def assign_unique_token
-    self.token = loop do
+    self.token ||= loop do
       token = SecureRandom.hex(10)
       break token unless Application.exists?(token: token)
     end
