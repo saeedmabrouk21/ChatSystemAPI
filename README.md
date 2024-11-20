@@ -1,5 +1,27 @@
 # Documention
 
+
+### 1. **Database Schema**
+- **Path**: `db/schema.rb`
+
+### 2. **API Controllers**
+The controllers that handle the API endpoints are located in the `app/controllers` directory. Here are the key controllers:
+
+- **ApplicationsController**: Manages the creation, updating, and viewing of applications.
+  - **Path**: `app/controllers/applications_controller.rb`
+  
+- **ChatsController**: Handles the creation of chats under a specific application and related actions.
+  - **Path**: `app/controllers/chats_controller.rb`
+  
+- **MessagesController**: Manages message creation and searching for a specific chat.
+  - **Path**: `app/controllers/messages_controller.rb`
+
+### 4. **Tasks (Cron Jobs)**
+- **RecalculateCountsJob**: Handles recalculate chat number per application and messages number per chat every hour.
+  - **Path**: `app/jobs/recalculate_counts_job.rb`
+
+---
+
 ## Instructions to run your code
 - I've made the .env file accessible publicly to simplify running the application.
 - The application can be run by just running
