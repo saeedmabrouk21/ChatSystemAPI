@@ -16,7 +16,7 @@ The controllers that handle the API endpoints are located in the `app/controller
 - **MessagesController**: Manages message creation and searching for a specific chat.
   - **Path**: `app/controllers/messages_controller.rb`
 
-### 4. **Tasks (Cron Jobs)**
+### 3. **Tasks (Cron Jobs)**
 - **RecalculateCountsJob**: Handles recalculate chat number per application and messages number per chat every hour.
   - **Path**: `app/jobs/recalculate_counts_job.rb`
 
