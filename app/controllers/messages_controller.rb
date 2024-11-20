@@ -61,7 +61,9 @@ class MessagesController < ApplicationController
       return
     end
 
-    results = Message.search_in_chat(params[:query], @chat.id)
+    search_service = SearchService.new(Message)
+    results = search_service.search_in_chat(params[:query], @chat.id)
+
     render json: MessageSerializer.new(results).serializable_hash[:data].map { |result| result[:attributes] }
   end
 
